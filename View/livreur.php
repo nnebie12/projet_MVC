@@ -9,19 +9,24 @@
         background-color: #333333;
         padding: 0;
         color: #fff;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        grid-gap: 20px;
+    }
 
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
     }
 
     .box {
         border: 1px solid #ccc;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 10px;
-        width: 250px;
+        margin-bottom: 20px;
+        width: calc(50% - 20px);
+        max-width: 400px;
         background-color: #fff;
+
     }
 
     .img {
@@ -39,41 +44,36 @@
         color: #333;
     }
 
-    .livreur-info, .client-info h2 {
+    .livreur-info, .numéro-livreur, .date-embauche {
         margin-top: 10px;
         font-size: 18px;
         color: #666;
     }
 
-    .livreur-info h1.client-title {
+    .livreur-info, .numéro-livreur, .date-embauche {
         font-size: 16px;
-    }
-
-    .clearfix::after {
-        content: "";
-        display: table;
-        clear: both;
     }
 </style>
 <body>
-<?php
-foreach ($tablolivreur as $row) {
-?>
+<div class="container">
+    <?php
+    foreach ($tablolivreur as $row) {
+        ?>
 
-<div class=" box">
-    <div class="sm-6">
-        <img style="max-width: 100%;height: auto;" class="img" src="./Assets/Livreurs/<?php $livreur = str_replace(' ','',$row['NROLIVR'].'.jpg'); echo ($livreur); ?>" alt="photo">
-    </div>
-    <div class="right">
-        <h1 class="livreur-info"> <?php echo $row['NOMLIVR'] . ' ' . $row['PRENOMLIVR'] ;?></h1>;
-        <h2 class="numéro-ivreur"> <?php echo $row['NROLIVR'] ; ?></h2>
-        <h2 class="date-embauche"> <?php echo $row['DATEEMBAUCHELIVR'] ; ?></h2>
-    </div>
+        <div class="box">
+            <div class="sm-6">
+                <img class="img" src="./Assets/Livreurs/<?php $livreur = str_replace(' ','',$row['NROLIVR'].'.jpg'); echo ($livreur); ?>" alt="photo">
+            </div>
+            <div class="right">
+                <h2 class="livreur-info"> <?php echo $row['NOMLIVR'] . ' ' . $row['PRENOMLIVR'] ;?></h2>
+                <h2 class="numéro-livreur"> <?php echo $row['NROLIVR'] ; ?></h2>
+                <h2 class="date-embauche"> <?php echo $row['DATEEMBAUCHELIVR'] ; ?></h2>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
 </div>
-<?php
-}
-?>
-<div class="clearfix"></div>
 
 </body>
 </html>

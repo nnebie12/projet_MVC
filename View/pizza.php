@@ -10,19 +10,24 @@
             background-color: #333333;
             padding: 0;
             color: #fff;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-gap: 20px;
+        }
 
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
         }
 
         .box {
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 250px;
+            margin-bottom: 20px;
+            width: calc(50% - 20px);
+            max-width: 400px;
             background-color: #fff;
+
         }
 
         .img {
@@ -36,20 +41,22 @@
             padding: 20px;
         }
 
-        .PizzaNom h1, .PizzaNumero h1, .prix {
-            font-size: 16px;
+        .PizzaNom {
+            color: #333;
+        }
+
+        .PizzaNom, .PizzaNumero, .prix {
             margin-top: 10px;
+            font-size: 18px;
             color: #666;
         }
 
-        .clearfix::after {
-            content: "";
-            display: table;
-            clear: both;
+        .PizzaNom, .PizzaNumero, .prix {
+            font-size: 16px;
         }
-
     </style>
         <body>
+        <div class="container">
     <?php
         foreach ($tablopizza as $row) {
      ?>
@@ -59,14 +66,14 @@
     		<img style="max-width: 100%;height: auto;" class="img" src="./Assets/Pizza/<?php $pizza = str_replace(' ','',$row['NROPIZZ'].'.jpg'); echo ($pizza); ?>" alt="photo">
     	</div>
     	<div class="right">
-    		<h1 class="PizzaNom"> <?php echo $row['DESIGNPIZZ'] ; ?></h1>
-            <h1 class="PizzaNumero"> <?php echo $row['NROPIZZ'] ; ?></h1>
-    		<h1 class="prix"><strong><?php echo $row['TARIFPIZZ'],"0 €" ; ?></strong></h1>
+    		<h2 class="PizzaNom"> <?php echo $row['DESIGNPIZZ'] ; ?></h2>
+            <h2 class="PizzaNumero"> <?php echo $row['NROPIZZ'] ; ?></h2>
+    		<h2 class="prix"><strong><?php echo $row['TARIFPIZZ'],"0 €" ; ?></strong></h2>
     	</div>
     </div>
 <?php
 }
 ?>
-<div class="clearfix"></div>
+</div>
     </body>
   </html>
